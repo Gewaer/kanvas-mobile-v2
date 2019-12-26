@@ -22,37 +22,26 @@ interface Iinput {
   onFocus: () => void;
   password?: boolean;
 }
-const Input = ({
-  value,
-  onChange,
-  onBlur,
-  onSubmit,
-  label,
-  useRef,
-  onFocus,
-  password,
-}: Iinput) => {
+const Input = (props : Iinput) => {
   return (
     <View input>
-      <Text input>{label}</Text>
+      <Text input>{props.label}</Text>
       <Item regular>
         <NbInput
-          secureTextEntry={password}
+          {...props}
+          secureTextEntry={props.password}
           ref={useRef}
-          value={value}
+          value={props.value}
           autoCapitalize="sentences"
           autoCorrect
           autoFocus
           blurOnSubmit
           caretHidden
           contextMenuHidden
-          keyboardType="default"
           maxLength={120}
-          onBlur={onBlur}
-          onChangeText={onChange}
-          onSubmitEditing={onSubmit}
+          onChangeText={props.onChange}
+          onSubmitEditing={props.onSubmit}
           selectionColor={colors.base}
-          onFocus={onFocus}
         />
       </Item>
     </View>
